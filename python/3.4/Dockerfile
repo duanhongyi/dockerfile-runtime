@@ -15,9 +15,23 @@ RUN dpkg-reconfigure locales
 RUN echo "Etc/UTC" > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
 
-RUN apt-get install -y git-core libxml2-dev build-essential python3 python3-dev python3-pip
-RUN apt-get install -y postgresql-client postgresql-client-common libpq5
-RUN apt-get install -y libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python3-tk
-RUN apt-get install -y libpq-dev
+RUN apt-get install -y python3 \
+                       python3-pip \
+                       binutils \
+                       gdal-bin
+
+RUN apt-get install -y python3-dev \
+                       libxml2-dev \
+                       libpq-dev \
+                       libtiff5-dev \
+                       libjpeg8-dev \
+                       zlib1g-dev \
+                       libfreetype6-dev \
+                       liblcms2-dev \
+                       libwebp-dev \
+                       tcl8.6-dev \
+                       tk8.6-dev \
+                       python3-tk \
+                       libproj-dev
 
 RUN rm -rf /var/lib/apt/lists/*
