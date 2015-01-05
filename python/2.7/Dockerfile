@@ -15,15 +15,21 @@ RUN dpkg-reconfigure locales
 RUN echo "Etc/UTC" > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
 
+# base python runtime
 RUN apt-get install -y python \
-                       python-pip \
-                       binutils \
-                       gdal-bin
+                       python-dev \
+                       python-pip
 
-RUN apt-get install -y python-dev \
-                       libxml2-dev \
-                       libpq-dev \
-                       libtiff5-dev \
+# geospatial libraries
+RUN apt-get install -y binutils \
+                       gdal-bin \
+                       libproj-dev
+
+# psycopg2
+RUN apt-get install -y libpq-dev
+
+# PIL/Pillow
+RUN apt-get install -y libtiff5-dev \
                        libjpeg8-dev \
                        zlib1g-dev \
                        libfreetype6-dev \
@@ -31,7 +37,9 @@ RUN apt-get install -y python-dev \
                        libwebp-dev \
                        tcl8.6-dev \
                        tk8.6-dev \
-                       python-tk \
-                       libproj-dev
+                       python-tk
+
+# xml
+RUN apt-get install -y libxml2-dev
 
 RUN rm -rf /var/lib/apt/lists/*
