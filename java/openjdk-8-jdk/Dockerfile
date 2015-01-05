@@ -15,8 +15,11 @@ RUN dpkg-reconfigure locales
 RUN echo "Etc/UTC" > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
 
-RUN apt-get install -y openjdk-8-jdk maven ant
+RUN apt-get install -y openjdk-8-jdk \
+                       maven \
+                       ant
 
-RUN apt-get autoremove -qy --purge openjdk-7-jre openjdk-7-jre-headless
+RUN apt-get autoremove -qy --purge openjdk-7-jre \
+                                   openjdk-7-jre-headless
 
 RUN rm -rf /var/lib/apt/lists/*
