@@ -2,6 +2,7 @@ FROM        python:3.5
 MAINTAINER  duanhongyi <duanhongyi@doopai.com>
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+            chrony \
             binutils \
             gdal-bin \
             libproj-dev \
@@ -9,3 +10,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN echo "Etc/UTC" > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
+
+RUN systemctl enable chrony

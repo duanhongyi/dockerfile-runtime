@@ -2,6 +2,7 @@ FROM        python:2.7
 MAINTAINER  duanhongyi <duanhongyi@doopai.com>
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+            chrony \
             binutils \
             gdal-bin \
             libproj-dev \
