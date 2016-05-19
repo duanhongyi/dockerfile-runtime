@@ -20,7 +20,8 @@ RUN apk add --no-cache --virtual .python-rundeps \
             lcms2-dev \
             openjpeg-dev \
             zlib-dev \
-    && ln -s /lib/libz.so /usr/lib/
+    && ln -s /lib/libz.so /usr/lib/ \
+    && ln -s /usr/lib/libgdal.so.20 /usr/lib/libgdal.so
 
 RUN pip install pillow \
             psycopg2 \
