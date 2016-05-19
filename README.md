@@ -6,7 +6,7 @@ regarding contributing and issues.
 
 # Python runtime
 
-Python runtime currently contains two version 2.7 and 3.4;
+Python runtime currently contains two version 2.7 and 3.5;
 
 # Java runtime
 
