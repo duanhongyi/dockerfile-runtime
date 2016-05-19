@@ -3,7 +3,6 @@ MAINTAINER  duanhongyi <duanhongyi@doopai.com>
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
-RUN apk add --no-cache --virtual .build-deps  \
+RUN apk add --no-cache --virtual .java-rundeps  \
             apache-ant \
-            maven \
-    && apk del .build-deps
+            maven
