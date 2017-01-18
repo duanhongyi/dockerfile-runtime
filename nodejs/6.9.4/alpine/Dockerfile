@@ -23,8 +23,8 @@ RUN apk add --no-cache libstdc++ \
         ; do \
             gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
         done \
-    && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz" \
-    && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
+    && curl -SLO "https://npm.taobao.org/dist/v$NODE_VERSION/node-v$NODE_VERSION.tar.xz" \
+    && curl -SLO "https://npm.taobao.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
     && gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc \
     && grep " node-v$NODE_VERSION.tar.xz\$" SHASUMS256.txt | sha256sum -c - \
     && tar -xf "node-v$NODE_VERSION.tar.xz" \
@@ -38,6 +38,8 @@ RUN apk add --no-cache libstdc++ \
     && curl -fSL http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz -o nginx.tar.gz \
     && curl -fSL http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz.asc  -o nginx.tar.gz.asc \
     && gpg --batch --verify nginx.tar.gz.asc nginx.tar.gz \
+    && addgroup -S nginx \
+    && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
     && CONFIG="--prefix=/etc/nginx \
             --sbin-path=/usr/sbin/nginx \
             --modules-path=/usr/lib/nginx/modules \
